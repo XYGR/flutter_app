@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:cnncq/service/http_service.dart';
 
-class LoginPage extends StatelessWidget {
-
-  LoginPage({Key key}):super(key:key);
+class RegisterPage extends StatelessWidget{
+  RegisterPage({Key key}):super(key:key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("登 录"),
+        title: Text("注册账号"),
         centerTitle: true,
       ),
       body: _Body(),
@@ -20,10 +19,10 @@ class _Body extends StatefulWidget {
   _Body({Key key}):super(key:key);
   @override
   State<StatefulWidget> createState() {
-    
+
     return _BodyState();
   }
-  
+
 }
 
 
@@ -55,7 +54,7 @@ class _BodyState extends State<_Body>{
 
   @override
   Widget build(BuildContext context) {
-    
+
     return Stack(
       children: <Widget>[
         ListView(
@@ -67,9 +66,9 @@ class _BodyState extends State<_Body>{
                 children: <Widget>[
                   TextFormField(
                     decoration: InputDecoration(
-                      icon: Icon(Icons.account_circle),
-                      labelText: "用户名",
-                      hintText: "用户名"
+                        icon: Icon(Icons.account_circle),
+                        labelText: "用户名",
+                        hintText: "用户名"
                     ),
                     onSaved: (val){
                       _userNameVal = val;
@@ -93,7 +92,7 @@ class _BodyState extends State<_Body>{
                         Expanded(
                           child: RaisedButton(
                             padding: EdgeInsets.all(5),
-                            child: Text("登录",style: TextStyle(color: Colors.white,letterSpacing: 10),),
+                            child: Text("注册",style: TextStyle(color: Colors.white,letterSpacing: 10),),
                             color: Colors.blue,
                             onPressed: _submit,
                           ),
@@ -106,13 +105,13 @@ class _BodyState extends State<_Body>{
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
-                        Text("还没有账号?"),
+                        Text("已有账号?"),
                         InkWell(
                           onTap: (){
-                            Navigator.of(context).pushReplacementNamed('/register');
+                            Navigator.of(context).pushReplacementNamed('/login');
                           },
                           child: Container(
-                              child: Text("去注册",style: TextStyle(color: Colors.blue,letterSpacing: 2),),
+                              child: Text("去登录",style: TextStyle(color: Colors.blue,letterSpacing: 2),),
                               margin:EdgeInsets.only(left: 20)
                           ),
                         )
@@ -127,4 +126,5 @@ class _BodyState extends State<_Body>{
       ],
     );
   }
+
 }

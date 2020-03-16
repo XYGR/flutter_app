@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../service/http_service.dart';
 
 class BootPage extends StatelessWidget {
@@ -29,15 +30,25 @@ class _BodyState extends State<_Body>{
   }
 
   void _boot() async {
-    var res = await post('http://10.10.1.103:3000/user/check_status',data: {"id": 12, "name": "wendu"});
-    print('接口返回:$res');
-    if(res == null){
-      setState(() {
-        this.isFailed = true;
-      });
+    // 初始化SharedPreferences对象
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // 从本地持久化中获取session数据
+    String session = prefs.getString('session')??'';
+    // 判断是否存在session
+    if(session.length > 1){
+
     }else{
-      Navigator.of(context).pushReplacementNamed(res['status'] == 0?'/index':'/login');
+      Navigator.of(context).pushReplacementNamed('/login');
     }
+//    var res = await post('http://10.10.1.103:3000/user/check_status',data: {"id": 12, "name": "wendu"});
+//    print('接口返回:$res');
+//    if(res == null){
+//      setState(() {
+//        this.isFailed = true;
+//      });
+//    }else{
+//      Navigator.of(context).pushReplacementNamed(res['status'] == 0?'/index':'/login');
+//    }
 
   }
 
