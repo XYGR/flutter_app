@@ -41,13 +41,14 @@ class _BodyState extends State<_Body>{
       this.setState((){
         _isLoading = true;
       });
-      var res = await post('http://10.10.1.103:3000/user/login',data: {"username": _userNameVal, "password": _passwordVal});
+      var res = await post('http://10.10.1.2:3000/user/register',data: {"username": _userNameVal, "password": _passwordVal});
+      print(res);
       this.setState((){
         _isLoading = false;
       });
-      if(res['status'] == 0){
-        print("登录成功");
-        Navigator.of(context).pushReplacementNamed('/home');
+      if(res && res['status'] == 0){
+        print("注册成功");
+        Navigator.of(context).pushReplacementNamed('/login');
       }
     }
   }
