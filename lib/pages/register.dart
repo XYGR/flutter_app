@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cnncq/service/http_service.dart';
+import 'package:cnncq/utils/HttpUtils.dart';
 
 class RegisterPage extends StatelessWidget{
   RegisterPage({Key key}):super(key:key);
@@ -41,12 +41,12 @@ class _BodyState extends State<_Body>{
       this.setState((){
         _isLoading = true;
       });
-      var res = await post('http://10.10.1.103:3000/user/register',data: {"username": _userNameVal, "password": _passwordVal});
+      var res = await HttpUtils.post('/user/register', {"username": _userNameVal, "password": _passwordVal});//post('http://10.10.1.2:3000/user/register',data: {"username": _userNameVal, "password": _passwordVal});
       print(res);
       this.setState((){
         _isLoading = false;
       });
-      if(res && res['status'] == 0){
+      if(res['status'] == 0){
         print("注册成功");
         Navigator.of(context).pushReplacementNamed('/login');
       }
